@@ -1,7 +1,16 @@
-
+/** 
+ * @class Gato2
+ * @brief Clase que representa el juego TicTacToe (Gato).
+ * 
+ * Esta clase maneja las reglas del juego TicTacToe, verificando movimientos y ganador.
+ */
 import java.util.Scanner;
-public class Gato{
-
+public class Gato2{
+    /** 
+     * @brief Tablero del juego TicTacToe.
+     * 
+     * Matriz de 3x3 que representa el estado actual del juego.
+     */
     public String Tab[][];
 
     public Cat(String play[][]){
@@ -72,9 +81,12 @@ public class Gato{
         Tab[p1][p2] = "O";
         }
     }
-
+    /** 
+     * @brief Verifica si hay un ganador para el jugador 1.
+     * @return True si el jugador 1 ha ganado, False en caso contrario.
+     */
     public boolean Winner1(){
-
+        // Código para verificar si el jugador 1 ha ganado
         if((Tab[0][0] == "X" && Tab[0][1] == "X" && Tab[0][2] == "X") || (Tab[1][0] == "X" && Tab[1][1] == "X" && Tab[1][2] == "X") || 
         (Tab[2][0] == "X" && Tab[2][1] == "X" && Tab[2][2] == "X") || (Tab[0][0] == "X" && Tab[1][0] == "X" && Tab[2][0] == "X") || (Tab[0][1] == "X" && Tab[1][1] == "X"
         && Tab[2][1] == "X") || (Tab[0][2] == "X" && Tab[1][2] == "X" && Tab[2][2] == "X") || (Tab[0][0] == "X" && Tab[1][1] == "X" && Tab[2][2] == "X") || 
@@ -86,9 +98,12 @@ public class Gato{
             return false;
         }
     }
-
+    /** 
+     * @brief Verifica si hay un ganador para el jugador 2.
+     * @return True si el jugador 2 ha ganado, False en caso contrario.
+     */
     public boolean Winner2(){
-
+        // Código para verificar si el jugador 2 ha ganado
         if((Tab[0][0] == "O" && Tab[0][1] == "O" && Tab[0][2] == "O") || (Tab[1][0] == "O" && Tab[1][1] == "O" && Tab[1][2] == "O") || 
         (Tab[2][0] == "O" && Tab[2][1] == "O" && Tab[2][2] == "O") || (Tab[0][0] == "O" && Tab[1][0] == "O" && Tab[2][0] == "O") ||
         (Tab[0][1] == "O" && Tab[1][1] == "O" && Tab[2][1] == "O") || 
@@ -101,9 +116,11 @@ public class Gato{
             return false;
         }
     }
-
+    /** 
+     * @brief Ejecuta las acciones del turno actual.
+     */
     public void Both(){
-
+        // Código para ejecutar las acciones del turno
         String M1 = "";
 
             if(Winner2() != true){
@@ -134,7 +151,10 @@ public class Gato{
         
 
     }
-
+    /** 
+     * @brief Determina si el juego ha terminado (por empate o ganador).
+     * @return True si el juego ha terminado, False en caso contrario.
+     */
     public boolean End(){
 
         
@@ -153,26 +173,3 @@ public class Gato{
     }
 }
 
-class Juego{
-    public static void main(String[] args) {
-
-        Gato Play = new Gato();
-
-        String mt[][] = new String [3][3];
-
-        Play.Tab = mt;
-
-        for(int i = 0; i<Play.Tab.length; i++){
-            for(int o = 0; o<Play.Tab.length; o++){
-                Play.Tab[i][o] = " ";
-            }
-        }
-        
-        do {
-                Play.Both();
-                Play.End();
-        } while ((Play.Winner1() == false || Play.Winner2() == true) && (Play.Winner1() == true || (Play.Winner2() == false)) ||
-        Play.End() == false);
-          
-    }
-}

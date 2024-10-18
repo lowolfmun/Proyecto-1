@@ -65,10 +65,11 @@ public boolean hacerMovimiento(int columna) {
  // Verifica si hay un ganador
  public boolean esGanador() {
     // Comprobar horizontalmente
+    boolean resultado = false;
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7 - 3; j++) {
             if (tablero[i][j] != ' ' && tablero[i][j] == tablero[i][j + 1] && tablero[i][j] == tablero[i][j + 2] && tablero[i][j] == tablero[i][j + 3]) {
-                return true; // Cuatro en línea horizontal
+                resultado = true; // Cuatro en línea horizontal
             }
         }
     }
@@ -77,7 +78,7 @@ public boolean hacerMovimiento(int columna) {
     for (int i = 0; i < 6 - 3; i++) {
         for (int j = 0; j < 7; j++) {
             if (tablero[i][j] != ' ' && tablero[i][j] == tablero[i + 1][j] && tablero[i][j] == tablero[i + 2][j] && tablero[i][j] == tablero[i + 3][j]) {
-                return true; // Cuatro en línea vertical
+                resultado = true; // Cuatro en línea vertical
             }
         }
     }
@@ -86,7 +87,7 @@ public boolean hacerMovimiento(int columna) {
     for (int i = 0; i < 6 - 3; i++) {
         for (int j = 0; j < 7 - 3; j++) {
             if (tablero[i][j] != ' ' && tablero[i][j] == tablero[i + 1][j + 1] && tablero[i][j] == tablero[i + 2][j + 2] && tablero[i][j] == tablero[i + 3][j + 3]) {
-                return true; // Cuatro en línea diagonal positiva
+                resultado = true; // Cuatro en línea diagonal positiva
             }
         }
     }
@@ -95,22 +96,24 @@ public boolean hacerMovimiento(int columna) {
     for (int i = 0; i < 6 - 3; i++) {
         for (int j = 3; j < 7; j++) {
             if (tablero[i][j] != ' ' && tablero[i][j] == tablero[i + 1][j - 1] && tablero[i][j] == tablero[i + 2][j - 2] && tablero[i][j] == tablero[i + 3][j - 3]) {
-                return true; // Cuatro en línea diagonal negativa
+                resultado = true; // Cuatro en línea diagonal negativa
             }
         }
     }
 
-    return false; // No hay ganador
+    return resultado; // No hay ganador
 }
 
  // Verifica si el juego ha terminado en empate
  public boolean esEmpate() {
+    boolean resultado = true;
     for (int j = 0; j < 7; j++) {
         if (tablero[0][j] == ' ') {
-            return false; // Si alguna columna todavía tiene espacio, no es empate
+            resultado = false; // Si alguna columna todavía tiene espacio, no es empate
         }
     }
-    return true; // Todas las posiciones están llenas, es empate
+    
+    return resultado; // Todas las posiciones están llenas, es empate
 }
 
     public void cambiarJugador() {
